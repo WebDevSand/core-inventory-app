@@ -1,0 +1,64 @@
+<div class="container border border-dark mt-2">
+		<h1 class="display-4 text-center m-2">Sales</h1>
+		<hr>
+		<div ng-hide = "hide == 1">
+		<nav class="float-left navbar navbar-default">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+						<span class="lead">Find a sale: <input type="text" class="form-control" placeholder="Search" ng-model = "searchCustomer"></span>
+				</div>
+			</form>
+		</nav>
+	
+	<table class="table table-striped table-bordered table-hover">
+		<thead class="thead-inverse">
+			<tr>
+				<th><span class="lead">Order ID#</span></th>
+				<th><span class="lead">Total</span></th>
+				<th><span class="lead">Customer ID#</span></th>
+				<th><span class="lead">Order Date</span></th>
+				<th><span class="lead">Display More Detail</span></th>
+			</tr>
+		</thead>
+		<tr
+			ng-repeat="x in orderList | orderBy:sortType:sortReverse | filter:searchItem">
+			<td><span class="lead">{{x.id}}</span></td>
+			<td><span class="lead">{{x.total | currency}}</span></td>
+			<td><span class="lead">{{x.customer.id}}</span></td>
+			<td><span class="lead">{{x.order_Date | date:MM-dd-YY}}</span></td>
+			<td><button class="btn btn-info" ng-click = "showOrder(x)">More Info</button></td>
+		</tr>
+	</table>
+
+</div>
+
+	<div ng-hide = "hide == 0">
+		<button class="btn btn-info" ng-click = "goBack()">Go Back</button><br>
+		
+		<div class="m-2"><span class="lead"> Total: {{order.total | currency}}</span></div>
+		<table class="table table-striped table-bordered table-hover">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Order ID#</th>
+					<th>Line Item#</th>
+					<th>Quantity</th>
+					<th>Item Name</th>
+					<th>Item Price</th>
+				</tr>
+			</thead>
+			<tr
+				ng-repeat="x in lineitems | orderBy:sortType:sortReverse | filter:searchItem">
+				<td><span class="lead">{{x.order.id}}</span></td>
+				<td><span class="lead">{{x.id}}</span></td>
+				<td><span class="lead">{{x.quantity}}</span></td>
+				<td><span class="lead">{{x.inventoryItem.name}}</span></td>
+				<td><span class="lead">{{x.inventoryItem.unitPrice | currency}}</span></td>
+			</tr>
+		</table>
+	
+	
+	</div>
+	
+	
+
+</div>

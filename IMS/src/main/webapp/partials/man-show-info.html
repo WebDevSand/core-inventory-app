@@ -1,0 +1,56 @@
+
+<div class="row">
+	<div class="col mt-2">
+		<div class="card">
+			<div class="card-header p-2">
+				<h1 class="display-4>
+					<span><i class="fa fa-user-circle-o" aria-hidden="true"></i> Welcome,
+					{{manInfo.firstName + " " + manInfo.lastName}}</span>
+				</h1>
+			</div>
+			<div class="card-body p-2">
+				<h4 class="h4">Email: {{manInfo.email}}</h4>
+			</div>
+		
+		<div class="row m-1">
+		<div class="col"><button class="btn btn-primary m-2 float-left" ng-click="updateShow = !updateShow">Update Info</button></div>
+		<div class="col"><div class="alert {{messageClass}}">{{message}}</div></div>
+		<div class="col"><button class="btn btn-primary m-2 float-right" ng-click="passShow = !passShow">Update Pass</button></div>
+		</div>
+		<div class="row m-1">
+		<div class="col m-1">
+		<div ng-show="updateShow">
+			<form ng-submit="updateInfo()">
+				<label for="inputFn">First Name</label>
+    			<input type="text" class="form-control" id="inputFn" ng-model="manInfo.firstName" placeholder="Enter firstname">
+    			<br>
+    			<label for="inputLn">Last Name</label>
+    			<input type="text" class="form-control" id="inputLn" ng-model="manInfo.lastName" placeholder="Enter lastname">
+    			<br>
+    			<label for="inputEmail">Email</label>
+    			<input type="email" class="form-control" id="inputEmail" ng-model="manInfo.email" placeholder="Enter email">
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		</div>
+		<div class="col m-1">
+		<div ng-show="passShow">
+			<form ng-submit="updatePass()">
+				<label for="inputPass1">New Password</label>
+    			<input type="password" class="form-control" id="inputPass1" ng-model="pass1" placeholder="Enter new password">
+    			<br>
+    			<label for="inputPass2">Re-enter New Password</label>
+    			<input type="password" class="form-control" id="inputPass2" ng-model="pass2" placeholder="Re-enter password">
+    			<br>
+    			<label for="inputCurr">Current Password</label>
+    			<input type="password" class="form-control" id="inputCurr" ng-model="currPass" placeholder="Current password">
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>

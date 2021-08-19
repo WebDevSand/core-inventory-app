@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+<head>
+<link rel="stylesheet" type="text/css" href="mainPage.css">
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<!-- Bootstrap scripts -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
+
+<!-- font awesome glyphicons -->
+<script src="https://use.fontawesome.com/83d38ddcd9.js"></script>
+
+<!-- This loads JS (angular & ui-router & carousel angualr) -->
+<script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<link rel="stylesheet" type="text/css" href="css/stars.css">
+
+<meta charset="ISO-8859-1">
+<title>World Tree Management Portal</title>
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
+<div class="col">
+<a class="navbar-brand text-light float-left" ng-show="!authenticated"><em><i class="fa fa-tree fa-3" aria-hidden="true"></i> World Tree</em></a>
+<a class="navbar-brand text-light float-left" ui-sref="dashboard" ng-show="authenticated"><em><i class="fa fa-tree fa-3" aria-hidden="true"></i> World Tree</em></a>
+ </div>
+ <div class="col">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+  <div class="collapse navbar-collapse float-right" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+	
+      <div class="btn-group" ng-show="authenticated" ng-init="authenticated = false">
+      <button class="btn btn-light nav-link" ui-sref="dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</button></li>
+      <button class="btn btn-light nav-link" ui-sref="manageInventoryHome">
+	  			<span><i class="fa fa-shopping-cart" aria-hidden="true"></i></i> Inventory</span>
+	  </button>
+	  <button class="btn btn-light nav-link" ui-sref="sales"><i class="fa fa-money" aria-hidden="true"></i> Sales</button></li>	  			
+	  <button class="btn btn-light nav-link" ui-sref="customers"><i class="fa fa-address-book" aria-hidden="true"></i> Customers</button></li>
+	  <button class="btn btn-light nav-link" ui-sref="adminInfo"><i class="fa fa-user" aria-hidden="true"></i> Profile</button></li>
+	  <button class="btn btn-light nav-link" ng-show="authenticated" ui-sref="managerLogout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></button></li>
+	  </div>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+	<div class="container">
+		<div ui-view></div>
+	</div>
+
+
+	<script src="JS/adminHome.JS"></script>
+	<script src="JS/dashboard.js"></script>
+
+</body>
+</html>

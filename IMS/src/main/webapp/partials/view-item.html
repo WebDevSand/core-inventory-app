@@ -1,0 +1,129 @@
+<small class="text-info">{{item.department.name}}</small>
+<div class= "row">
+	<div class="col-10">
+		<div class="row">
+		<div class="col"><img ng-src="{{item.image}}" width="{{item.imageWidth*2}}" height="{{item.imageHeight*2}}"></div>
+		<div class="col">
+				<h3 class="display-4">{{item.name}}</h3>
+				<p class="text-info">
+					<span>
+					<div class="star-rating float-left m-2">
+				      	<div class="star-rating__wrap">
+					        <input class="star-rating__input" id="star-rating-5" type="radio" name="round" value="5" ng-model="roundedreviewAvg" disabled>
+					        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
+					        <input class="star-rating__input" id="star-rating-4" type="radio" name="round" value="4" ng-model="roundedreviewAvg" disabled>
+					        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
+					        <input class="star-rating__input" id="star-rating-3" type="radio" name="round" value="3" ng-model="roundedreviewAvg" disabled>
+					        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
+					        <input class="star-rating__input" id="star-rating-2" type="radio" name="round" value="2" ng-model="roundedreviewAvg" disabled>
+					        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
+					        <input class="star-rating__input" id="star-rating-1" type="radio" name="round" value="1" ng-model="roundedreviewAvg" disabled>
+					        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
+					      </div>
+					 </div>
+					</span>
+				 {{productreviewAvg}} out of {{productreviews.length}} reviews</p>
+				<hr>
+				<h5 class="text-danger">Price: {{item.unitPrice | currency}} </h5>
+				<h5 class="text-danger" ng-show="discountShow">-{{discountOffer}} </h5>
+				<h6 class="text-danger" ng-show="discountShow">{{discountMessage}} </h5>
+				<h5 class="text-success">Stock: {{item.quantity}} available!</h5>
+				<hr>
+				<h4> About the item: </h4>
+				<p>{{item.description}}</p>
+		</div>
+		</div>
+	</div>
+	<div class="col-2 p-1">
+				<form class="border border-dark rounded p-1">
+				<label for="quantity">Quantity</label>
+				<span>
+						<select class="form-control" id="quantity" ng-model="chosenQuantity">
+							<option ng-repeat="q in quantities" value="{{q}}">{{q}}</option>
+						</select>
+				</span><br>
+				
+				<button class="btn btn-info" ng-click="addToCart(item,chosenQuantity)" ng-hide="item.inCart">
+				 <span ng-hide="item.inCart"><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</span>
+				 <span ng-hide="!item.inCart"><i class="fa fa-plus" aria-hidden="true"></i>In Cart</span>
+				 </button>
+				 
+				 <button class="btn btn-info" ng-click="increaseCartQuantity(item,chosenQuantity)" ng-hide="!item.inCart">
+				 	<span ng-hide="!item.inCart"><i class="fa fa-plus" aria-hidden="true"></i>Add more</span>
+				 </button><br><hr>
+				 <div class="alert alert-success" ng-hide="!item.inCart">
+				 	{{inCartQuantity}}<span> in cart  <i class="fa fa-cart-arrow-down" aria-hidden="true"></i></span>
+				 </div>
+				 
+				</form>
+				<p ng-show="showQuantityWarning" class=text-danger>Please choose a quantity.</p>
+	</div>
+</div>
+<hr>
+<div class="row m-1"><div class="col">
+	<div ng-show="!finishedReview">
+	<div class="row">
+	<h2 class="h2">Leave a review!</h3><br>
+	</div>
+	<form ng-submit="submitReview()">
+		<div class="row m-2">
+		<textarea class="form-control" ng-model="userReviewDescription" rows="3" placeholder="Describe how you feel..."></textarea>
+		</div>
+		<div class="row"><div class="col">
+		<span class="text-info float-left m-2">How would you rate this product?</span>
+		<div class="star-rating float-left m-2">
+	      <div class="star-rating__wrap">
+	        <input class="star-rating__input" id="star-rating-55" type="radio" name="rating" value="5" ng-model="chosenRating">
+	        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-55" title="5 out of 5 stars"></label>
+	        <input class="star-rating__input" id="star-rating-44" type="radio" name="rating" value="4" ng-model="chosenRating">
+	        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-44" title="4 out of 5 stars"></label>
+	        <input class="star-rating__input" id="star-rating-33" type="radio" name="rating" value="3" ng-model="chosenRating">
+	        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-33" title="3 out of 5 stars"></label>
+	        <input class="star-rating__input" id="star-rating-22" type="radio" name="rating" value="2" ng-model="chosenRating">
+	        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-22" title="2 out of 5 stars"></label>
+	        <input class="star-rating__input" id="star-rating-11" type="radio" name="rating" value="1" ng-model="chosenRating">
+	        <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-11" title="1 out of 5 stars"></label>
+	      </div>
+	    </div>
+			
+		<button class="btn btn-primary float-right m-2">Submit</button>
+		<div class="float-right"><div class="alert alert-danger"  ng-show="showReviewWarning">Please choose a rating.</div></div>
+		</div></div>
+	</form>
+</div>
+<div ng-show="finishedReview" class="float-right"><p class="text-success">Thank you for giving feedback!</p></div>
+</div></div>
+<hr>
+
+<div class="row m-1">
+	<h3 class="h3">Product Reviews:</h3>
+</div>
+
+	<hr>
+	
+<div ng-repeat="review in productreviews">
+	<div class="row"><div class="col">
+	   <div class="card m-2">
+	    <div class="card-header">
+		<div class="star-rating float-left m-2">
+	      	<div class="star-rating__wrap">
+		        <input class="star-rating__input" id="{{review.id}}-5" type="radio" name="{{review.id}}" value="5" ng-model="review.rating" disabled>
+		        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{review.id}}-5" title="5 out of 5 stars"></label>
+		        <input class="star-rating__input" id="{{review.id}}-4" type="radio" name="{{review.id}}" value="4" ng-model="review.rating" disabled>
+		        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{review.id}}-4" title="4 out of 5 stars"></label>
+		        <input class="star-rating__input" id="{{review.id}}-3" type="radio" name="{{review.id}}" value="3" ng-model="review.rating" disabled>
+		        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{review.id}}-3" title="3 out of 5 stars"></label>
+		        <input class="star-rating__input" id="{{review.id}}-2" type="radio" name="{{review.id}}" value="2" ng-model="review.rating" disabled>
+		        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{review.id}}-2" title="2 out of 5 stars"></label>
+		        <input class="star-rating__input" id="{{review.id}}-1" type="radio" name="{{review.id}}" value="1" ng-model="review.rating" disabled>
+		        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{review.id}}-1" title="1 out of 5 stars"></label>
+		      </div>
+		 </div>
+		 </div>
+		 <div class="card-body">
+			<p class="text-info">{{review.description}}</p>
+			 <!--<footer class="blockquote-footer"><cite>{{review.name}}</cite></footer> -->
+		 </div>
+		</div>
+	</div> </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="row pad-top-botm client-info">
+         <div class="col-lg-6 col-md-6 col-sm-6">
+         <h4>  <strong>Customer Information</strong></h4>
+           <strong> {{customer.firstname}} {{customer.lastname}}</strong>
+             <br>
+                  <b>Address :</b> {{customer.address}}
+              <br>
+                 {{customer.city}}, {{customer.state.name}}, United States. {{customer.zipcode}}
+             <br>
+             <b>Call :</b> {{customer.phone}}
+              <br>
+             <b>E-mail :</b> {{customer.email}}
+         </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            
+              <hr><br>
+               <b>Card :  {{customer.card.cardnumber}} </b>
+               <br>
+               	  Expires : {{customer.card.expiration}}
+              <br>
+         </div>
+</div>
+	<br>
+	<div class="row m-1">
+		<div class="col"><button class="btn btn-primary m-2 float-left" ng-click="updateCustShow = !updateCustShow">Update Info</button></div>
+		<div class="col"><div class="alert {{messageClass}}">{{message}}</div></div>
+		<div class="col"><button class="btn btn-primary m-2 float-right" ng-click="passShow = !passShow">Update Pass</button></div>
+	</div>
+	<br>
+	<div class="row m-1">
+		<div class="col" ng-hide="cardlf!=null"><button class="btn btn-primary m-2 float-left" ng-click="createCardShow = !createCardShow">Register Card</button></div>
+		<div class="col"><div class="alert {{cardmessageClass}}">{{cardmessage}}</div></div>
+		<div class="col" ng-hide="cardlf==null"><button class="btn btn-primary m-2 float-right" ng-click="cardCustShow = !cardCustShow">Update Card</button></div>
+	</div>
+	<br>
+	<div class="row m-1">
+		<div class="col m-1">
+		<div ng-show="updateCustShow">
+			<form ng-submit="updateInfo()">
+				<label for="inputFn">First Name</label>
+    			<input type="text" class="form-control" id="inputFn" ng-model="custInfo.firstName" placeholder="Enter firstname">
+    			<br>
+    			<label for="inputLn">Last Name</label>
+    			<input type="text" class="form-control" id="inputLn" ng-model="custInfo.lastName" placeholder="Enter lastname">
+    			<br>
+    			<label for="inputEmail">Email</label>
+    			<input type="email" class="form-control" id="inputEmail" ng-model="custInfo.email" placeholder="Enter email">
+    			<br>
+    			<label for="inputAddress">Address</label>
+    			<input type="text" class="form-control" id="inputAddress" ng-model="custInfo.address" placeholder="Enter address">
+    			<br>
+    			<label for="inputCity">City</label>
+    			<input type="text" class="form-control" id="inputCity" ng-model="custInfo.city" placeholder="Enter city">
+    			<br>
+    			<label for="inputState">State</label>
+    			<select ng-model="chosenState" ng-options="state.name for state in states"></select>
+    			<br>
+    			<label for="inputZipcode">Zipcode</label>
+    			<input type="text" class="form-control" id="inputZipcode" ng-model="custInfo.zipcode" placeholder="Enter zipcode">
+    			<br>
+    			<label for="inputPhone">Phone Number</label>
+    			<input type="text" class="form-control" id="inputPhone" ng-model="custInfo.phone" placeholder="Enter phone number">
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		</div>
+		<div class="col m-1">
+		<div ng-show="passShow">
+			<form ng-submit="updatePass()">
+				<label for="inputPass1">New Password</label>
+    			<input type="password" class="form-control" id="inputPass1" ng-model="pass1" placeholder="Enter new password" required>
+    			<br>
+    			<label for="inputPass2">Re-enter New Password</label>
+    			<input type="password" class="form-control" id="inputPass2" ng-model="pass2" placeholder="Re-enter password" required>
+    			<br>
+    			<label for="inputCurr">Current Password</label>
+    			<input type="password" class="form-control" id="inputCurr" ng-model="currPass" placeholder="Current password" required>
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		</div>
+	</div>
+	<div class="row m-1">
+	<div class="col m-1">
+		<div ng-show="createCardShow">
+			<form ng-submit="createCard()">
+				<label for="cardnumber">Card Number</label>
+    			<input type="text" class="form-control" id="ncardnum" ng-model="ncardnum" placeholder="Enter card number" required>
+    			<br>
+    			<label for="nameoncard">Name On Card</label>
+    			<input type="text" class="form-control" id="ncardname" ng-model="ncardname" placeholder="Enter card name" required>
+    			<br>
+    			<label for="expiration">Expiration Date</label>
+    			<input type="text" class="form-control" id="nexpdate" ng-model="nexpdate" placeholder="Enter expiration date" required>
+    			<br>
+    			<label for="security">Security Code</label>
+    			<input type="text" class="form-control" id="nscode" ng-model="nscode" placeholder="Enter security code" required>
+    			<br>
+    			<button type="submit" class="btn btn-primary">Register Card</button>
+			</form>
+		</div>
+	</div>
+	<div class="col m-1">
+		<div ng-show="cardCustShow">
+			<form ng-submit="updateCard()">
+				<label for="cardnumber">New Card Number</label>
+    			<input type="text" class="form-control" id="cardnum" ng-model="cardnum" placeholder="Enter new card number" required>
+    			<br>
+    			<label for="nameoncard">New Name On Card</label>
+    			<input type="text" class="form-control" id="cardname" ng-model="cardname" placeholder="Enter new card name" required>
+    			<br>
+    			<label for="expiration">New Expiration Date</label>
+    			<input type="text" class="form-control" id="expdate" ng-model="expdate" placeholder="Enter new expiration date" required>
+    			<br>
+    			<label for="security">New Security Code</label>
+    			<input type="text" class="form-control" id="scode" ng-model="scode" placeholder="Enter new security code" required>
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>

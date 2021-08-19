@@ -1,0 +1,34 @@
+
+<div class="row">
+<div class="col" id = "addNewInventory">
+  <span class="lead">Adding New Inventory</span>
+  <hr><br/>
+  <form name = "invForm" ng-submit = "manage.addItem()">
+  <label for="name">Product name</label>
+  <input class="form-control" id = "name" type = "text" ng-model = "name" placeholder = "Product Name" required><br/>
+  <label for="description">Description</label>
+  <input class="form-control" id = "description" type = "text" ng-model = "description" placeholder = "Description" required><br/>
+  <label for="unitPrice">Unit Price</label>
+  <input class="form-control" id = "unitPrice" type="number" min="0.01" step="0.01" ng-model = "unitPrice" placeholder = "Unit Price" required><br/>
+  <label for="quantity">Amount in Stock</label>
+  <input class="form-control" id = "quantity" type="number" min="1" step="1" ng-model = "quantity" placeholder = "Quantity" required><br/>
+  <label for="departments">Choose a department</label>
+  <select id="departments" class="form-control" ng-model="chosenDepartment" required>
+  	<option ng-repeat="department in departments" value="{{department.id}}">{{department.name}}</option>
+  </select>
+  <label for="picture">Add a picture</label>
+  <input class="form-control" id = "picture" type = "file" file-model = "image"><br/>
+  <button class="btn btn-primary" type= "submit" >Submit</button>
+  </form>
+</div>
+<div class="col" id="addNewDepartment">
+	<span class="lead">Add New Department</span>
+	<hr><br/>
+	<form name ="depForm" ng-submit="manage.addDepartment()">
+		<label for="depname">Name of Department</label>
+		<input class="form-control" id = "depname" type = "text" ng-model = "depname" placeholder = "Department Name" required><br/>
+		<button class="btn btn-primary" type= "submit" >Submit</button>
+	</form>
+</div>
+</div>
+

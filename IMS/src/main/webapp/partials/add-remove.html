@@ -1,0 +1,147 @@
+<h1 class="display-4 text-center m-2">Edit Inventory</h1>
+<hr>
+<div ng-hide="edit == 1">
+	<nav class="navbar navbar-default">
+		<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+				<div style="float: left">
+					<input type="text" class="form-control" placeholder="Search"
+						ng-model="searchItem">
+				</div>
+
+				<div style="float: right"></div>
+			</div>
+		</form>
+	</nav>
+	<table class="table table-striped table-bordered table-hover">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Edit</th>
+				<th>Id</th>
+				<th>Department</th>
+				<th>Name</th>
+				<th>Unit price</th>
+				<th>Discount</th>
+				<th>Quantity</th>
+				<th>Description</th>
+				<th>Image</th>
+				<th>Avg rating</th>
+			</tr>
+		</thead>
+		<tr
+			ng-repeat="x in itemlist  | orderBy:sortType:sortReverse | filter:searchItem">
+
+			<td><button class="btn btn-info" type="button" ng-click="change(x)">Edit</button></td>
+			<td><span class="lead">{{x.id}}</span></td>
+			<td><span class="lead">{{x.departmentid}}</span></td>
+			<td><span class="lead">{{x.name}}</span></td>
+			<td><span class="lead">{{x.unitPrice | currency}}</span></td>
+			<td><span class="lead">{{x.discountid}}</td>
+			<td><span class="lead">{{x.quantity}}</span></td>
+			<td><span class="lead">{{x.description}}</span></td> 
+			<td><img ng-src="{{x.image}}" height=250 width=250 /></td>
+			<td><button type="button" class="btn btn-info"
+					ng-click="showReview(x)">Show Reviews</button>
+				<div ng-show="x.show">
+					<div class="mt-1"><span class="lead">Average: {{x.averagereview}}</span></div>
+					<div ng-repeat="i in x.productreviews">
+						<div class="star-rating float-left m-2">
+					      	<div class="star-rating__wrap">
+						        <input class="star-rating__input" id="{{i.id}}-5" type="radio" name="{{i.id}}" value="5" ng-model="i.rating" disabled>
+						        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{i.id}}-5" title="5 out of 5 stars"></label>
+						        <input class="star-rating__input" id="{{i.id}}-4" type="radio" name="{{i.id}}" value="4" ng-model="i.rating" disabled>
+						        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{i.id}}-4" title="4 out of 5 stars"></label>
+						        <input class="star-rating__input" id="{{i.id}}-3" type="radio" name="{{i.id}}" value="3" ng-model="i.rating" disabled>
+						        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{i.id}}-3" title="3 out of 5 stars"></label>
+						        <input class="star-rating__input" id="{{i.id}}-2" type="radio" name="{{i.id}}" value="2" ng-model="i.rating" disabled>
+						        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{i.id}}-2" title="2 out of 5 stars"></label>
+						        <input class="star-rating__input" id="{{i.id}}-1" type="radio" name="{{i.id}}" value="1" ng-model="i.rating" disabled>
+						        <label class="star-rating__ico fa fa-star-o fa-lg" for="{{i.id}}-1" title="1 out of 5 stars"></label>
+						      </div>
+						 </div>					
+					</div>
+				</div></td>
+		</tr>
+	</table>
+</div>
+<div ng-hide="edit == 0">
+	<button class="btn btn-info" ng-click="reset()">Go Back</button>
+	<br><br>
+	<table class="table table-striped table-bordered table-hover">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Current Inventory Information</th>
+				<th>New Inventory Information</th>
+				<th>Discount</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>
+			<label for="cname">Product Name</label>
+			<input id="cname" class="form-control" ng-value="AR.name" disabled><br /> 
+			
+			<label for="cunit">Current price</label>
+			<input id="cunit" class="form-control" ng-value="AR.unitPrice" disabled><br />
+			
+			<label for="cquantity">Current Quantity</label> 
+			<input id="cquantity" class="form-control" ng-value="AR.quantity" disabled><br />
+			
+			<label for="cdesc">Current Description</label>
+			<input id="cdesc" class="form-control" ng-value="AR.description" disabled>
+			
+			
+			</td>
+			
+			<td>
+			<label for="nname">New Name</label>
+			<input id="nname" class="form-control" placeholder="New Name" ng-model="newName" required><br />
+			
+			<label for="nunit" ng-hide="removeDiscount" >New Price</label>
+			<input id="nunit" class="form-control" placeholder="New Unit Price" ng-model="newUnitPrice" ng-hide="removeDiscount" required><br />
+			 
+			<label for="nquantity">New Quantity</label>
+			<input id="nquantity" class="form-control" placeholder="New Quantity" ng-model="newQuantity"><br />
+			
+			<label for="ndesc">New Description</label>
+			<input id="ndesc" class="form-control" placeholder="New Description" ng-model="newDescription"><br />
+			
+			<label for="pdisc" ng-show="perDiscount">Percent Amount</label>
+			<input id="pdisc" class="form-control" placeholder="% discount" ng-model="percentDiscount" ng-show="perDiscount"> 
+			
+			<label for="fdisc" ng-show="fDiscount">Flat Discount</label>
+			<input id="fdisc" class="form-control" placeholder="Flat discount" ng-model="flatDiscount" ng-show="fDiscount"><br />
+			
+			<label for="rdisc" ng-show="perDiscount || fDiscount">Discount Description</label> 
+			<input id="rdisc" class="form-control" placeholder="Discount Description" ng-model="pDiscountReason" ng-show="perDiscount || fDiscount">
+			
+			<button class="btn btn-primary" type="submit" ng-click="applyItem()">Submit New Information</button>
+			
+			</td>
+			
+			<td ng-hide="discountYes == 0">
+			
+				<label for="remdisc">Remove Current Discount?</label>
+				<input id="remdisc" class="form-control" type="checkbox" ng-model="removeDiscount">
+			</td>
+			
+			<td ng-hide="discountNo == 0">
+			
+				<label for="appdisc">Add Discount?</label>
+				<input id="appdic" class="form-control" type="checkbox" ng-model="showDiscount">
+					
+				<p ng-show="showDiscount">
+					<label for="perc">Percent</label>
+					<input id="perc" class="form-control" type="checkbox" ng-model="perDiscount">
+				</p>
+				
+				<p ng-show="showDiscount">
+					<label for="flat">Flat</label> 
+					<input id="flat" class="form-control" type="checkbox" ng-model="fDiscount">
+				</p>
+				
+			</td>
+		</tr>
+	</table>
+
+
+</div>

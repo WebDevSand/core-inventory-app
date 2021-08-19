@@ -1,0 +1,57 @@
+
+<div class="row m-1">
+    		<div class="col">
+    			<h2 class="display-4 m-2">Customer Login</h2>
+    			<hr>
+		<div class="form-group"><form ng-submit="login.doLogin()">
+			<label for="email">Email</label>
+			<input type="text" id="email" class="form-control w-50" ng-model="login.customer.email" required>
+		
+			<label for="pass">Password</label>
+			<input type="password" id="pass" class="form-control w-50" ng-model="login.customer.password" required>
+			<button class="btn btn-primary m-1" ng-click="login.doLogin()">Login</button>
+			<hr>
+			<div class="alert alert danger" ng-show="showFailLogin">Incorrect credentials</div>
+			</form>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+<div class="row m-1">
+		<div class="col"><button class="btn btn-primary m-2 float-left" ng-click="createCust = !createCust">Register as Customer</button></div>
+		<div class="col"><div class="alert {{messageClass}}">{{message}}</div></div>
+</div>
+<br>
+<div ng-show="createCust">
+			<form ng-submit="createInfo()">
+				<label for="inputFn">First Name</label>
+    			<input type="text" class="form-control" id="inputFn" ng-model="custInfo.firstName" placeholder="Enter firstname" required>
+    			<br>
+    			<label for="inputLn">Last Name</label>
+    			<input type="text" class="form-control" id="inputLn" ng-model="custInfo.lastName" placeholder="Enter lastname" required>
+    			<br>
+    			<label for="inputEmail">Email</label>
+    			<input type="email" class="form-control" id="inputEmail" ng-model="custInfo.email" placeholder="Enter email" required>
+    			<br>
+    			<label for="inputPass">Password</label>
+    			<input type="password" class="form-control" id="inputPass" ng-model="custInfo.password" placeholder="Enter password" required>
+    			<br>
+    			<label for="inputAdd">Address</label>
+    			<input type="text" class="form-control" id="inputAdd" ng-model="custInfo.address" placeholder="Enter address" required>
+    			<br>
+    			<label for="inputCity">City</label>
+    			<input type="text" class="form-control" id="inputCity" ng-model="custInfo.city" placeholder="Enter city" required>
+    			<br>
+    			<label for="inputState">State</label>
+    			<select ng-model="chosenState" ng-options="state.name for state in states"></select>
+    			<br>
+    			<label for="inputZipcode">Zipcode</label>
+    			<input type="text" class="form-control" id="inputZipcode" ng-model="custInfo.zipcode" placeholder="Enter zipcode" required>
+    			<br>
+    			<label for="inputPhone">Phone Number</label>
+    			<input type="text" class="form-control" id="inputPhone" ng-model="custInfo.phone" placeholder="Enter phone number">
+    			<br>
+    			<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+</div>

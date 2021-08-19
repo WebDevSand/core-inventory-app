@@ -1,0 +1,91 @@
+@charset "ISO-8859-1";
+
+body{
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#mainHead{
+  font-family: 'Sacramento', cursive;
+
+}
+.jumbotron {
+	margin-left: 350px;
+	margin-right: 350px;
+	background-color: #ffbf80; 
+	align: center;
+} 
+
+#overallJumbo{
+ background-color: #d9ffb3;
+ margin-bottom: 0;
+}
+#mainNav{
+  
+}
+.outerElement{
+  background-color: #ffbf80;
+  float:right;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 27%;
+  height: 300px;
+}
+.innerElement{
+  background-color:white;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  height: 250px;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+.introDiv{
+  background-color: #b3ffd9;
+  float: left;
+  height: 120px;
+  border: 1px solid black;
+  width: 19%;
+  height: 300px;
+  text-align: center;
+  font-size: 30px;
+  vertical-align:middle;
+  line-height: 300px;
+}
+
+ul{
+  list-style-type:none;
+}
+#footer{
+	height: 40px;
+	width: 100%;
+}
+<!-- adminHomePage.html -->
+#managerSideNav{
+  border-right: 2px solid black;
+}
+<!-- manageInventoryHome.html-->
+#manageInventoryHomePage{
+  text-align:center;
+}
+#manageInventoryHome > a{
+  font-color: blue;
+}
+.MIHLinks{
+  color: blue;
+  text-decoration: underline;
+}
+<!-- Inventory Search -->
+#inventorySearch{
+  width: 500px;
+}
+<!--Add New Inventory -->
+#addNewInventory{
+  text-align:center;
+}
+<!--Adding and Removing Current Inventory -->
+#discounts{
+	
+}

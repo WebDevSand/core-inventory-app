@@ -1,0 +1,42 @@
+
+	<div class="container border border-dark mt-2">
+		<h1 class="display-4 text-center m-2">Customers</h1>
+		<hr>
+		<nav class="float-left navbar navbar-default">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+						<span class="lead">Find someone: <input type="text" class="form-control" placeholder="Search" ng-model = "searchCustomer"></span>
+				</div>
+			</form>
+		</nav>
+
+		<table class="table table-striped table-bordered table-hover">
+			<thead class="thead-inverse">
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Street Address</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zipcode</th>
+				<th>Phone</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="cust in allCusts | orderBy:sortType:sortReverse | filter:searchCustomer">
+				<td>{{cust.id}}</td>
+				<td>{{cust.firstname}}</td>
+				<td>{{cust.lastname}}</td>
+				<td>{{cust.email}}</td>
+				<td>{{cust.address}}</td>
+				<td>{{cust.city}}</td>
+				<td>{{cust.state.name}}</td>
+				<td>{{cust.zipcode}}</td>
+				<td>{{cust.phone}}</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+

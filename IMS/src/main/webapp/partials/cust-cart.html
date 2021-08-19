@@ -1,0 +1,119 @@
+<div class="row p-2">
+		<h3>
+			<i class="fa fa-shopping-cart fa-5" aria-hidden="true"></i> Your cart has {{cart.length}} items
+		</h3>
+		<table class="table table-striped table-inverse table-bordered mt-2 mb-2">
+			<thead class="thead-inverse">
+				<th>Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Item Total</th>
+				<th></th>
+			</thead>
+			<tr ng-repeat="item in cart track by $index">
+				<td><span ng-hide="item.removed">{{item.name}}</span>
+					<strike ng-hide="!item.removed">{{item.name}}</strike>
+				</td>
+				<td><span ng-hide="item.removed">{{item.unitPrice | currency}}</span>
+					<strike ng-hide="!item.removed">{{item.unitPrice | currency}}</strike>
+				</td>
+				<td><span ng-hide="item.removed">{{item.quantity}}</span>
+					<strike ng-hide="!item.removed">{{item.quantity}}</strike>
+				</td>
+				<td><span ng-hide="item.removed">{{item.unitPrice * item.quantity | currency}}</span>
+					<strike ng-hide="!item.removed">{{item.unitPrice * item.quantity | currency}}</strike>
+				</td>
+				<td><button ng-hide="item.removed" ng-click="removeFromCart(item)" class="btn btn-danger float-left ml-2">
+					<span><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+					</button>
+					<button ng-hide="!item.removed" ng-click="addItemBack(item)" class="btn btn-light float-left ml-2">
+					<span><i class="fa fa-undo" aria-hidden="true"></i></span>
+					</button>
+				</td>
+			</tr>
+			<tr><td></td><td></td></tr><tr>
+				<td></td><td></td>
+				<th>Total</th>
+				<td>{{cart.total | currency}}</td><td></td>
+			</tr>
+		</table>
+		<div class="col" ng-show="showFirstButtons">
+		<button class="btn btn-primary float-right m-1" ng-click="checkout()" ng-disabled="cart.length < 1">Checkout</button>
+		<button class="btn btn-info float-right m-1" ui-sref="mainStorePage">Keep Shopping</button>
+		</div>
+</div>
+
+<div class="row m-1" ng-show="showLogin">
+	<div class="col">
+		<div class="form-group"><form ng-submit="login()">
+			<label for="email">Email</label>
+			<input type="text" id="email" class="form-control w-50" ng-model="inputEmail" required>
+		
+			<label for="pass">Password</label>
+			<input type="password" id="pass" class="form-control w-50" ng-model="inputPass" required>
+			<button class="btn btn-primary m-1" ng-click="login()">Login</button>
+			<hr>
+			<div class="alert alert danger" ng-show="showFailLogin">Incorrect credentials</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row m-1" ng-show="showPaymentForm">
+	<div class="col">
+		<p class="lead m-1">Payment Info </p>
+		<div class="form-group"><form ng-submit="submitPaymentInfo()">
+				<label for="cardnumber">Card Number</label>
+    			<input type="text" class="form-control" id="cardnumber" ng-model="customer.card.cardnumber" placeholder="Enter card number" required>
+    			<br>
+    			<label for="nameoncard">Name On Card</label>
+    			<input type="text" class="form-control" id="nameoncard" ng-model="customer.card.nameoncard" placeholder="Enter card name" required>
+    			<br>
+    			<label for="expiration">Expiration Date (MM/YY)</label>
+    			<input type="text" class="form-control" id="expiration" ng-model="customer.card.expiration" placeholder="Enter expiration date" required>
+    			<br>
+    			<label for="security">Security Code</label>
+    			<input type="text" class="form-control" id="security" ng-model="customer.card.securitycode" placeholder="Enter security code" required>
+    			<br>
+    			<button class="btn btn-primary" ng-click="submitPaymentInfo()">Submit Payment Info</button>
+    			</form>
+			<hr>
+			<div class="alert alert danger" ng-show="showFailLogin">Incorrect {{cardMessage}}</div>
+		</div>
+	</div>
+</div>
+
+<div class="row pad-top-botm client-info" ng-show="showPayment">
+         <div class="col-lg-6 col-md-6 col-sm-6">
+         <h4>  <strong>Customer Information</strong></h4>
+           <strong> {{customer.firstname}} {{customer.lastname}}</strong>
+             <br>
+                  <b>Address :</b> {{customer.address}}
+              <br>
+                 {{customer.city}}, {{customer.state.name}}, United States.
+             <br>
+             <b>Call :</b> {{customer.phone}}
+              <br>
+             <b>E-mail :</b> {{customer.email}}
+         </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            
+               <h4>  <strong>Payment Details </strong></h4>
+            <b>Bill Amount :  {{cart.total | currency}} USD </b>
+              <br>
+               Bill Date :  {{date}}
+              <hr><br>
+               <b>Card :  {{customer.card.cardnumber}} </b>
+               <br>
+               	  Expires : {{customer.card.expiration}}
+              <br>
+         </div>
+</div>
+<div class="row m-1" ng-show="showCheckout">
+<div class="col"><button class="btn btn-primary float-right" ng-click="processOrder()" ng-hide="showProcessing">Complete</button></div>
+					<span class="text-dark" ng-show="showProcessing"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> Processing...</span>
+</div>
+<div class="sticky-top m-2">
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%"></div>
+</div>
+</div>

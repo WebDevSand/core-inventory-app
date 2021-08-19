@@ -1,0 +1,128 @@
+
+<div class="row">
+	<div class="col">
+		<div class="jumbotron-fluid m-2 p-2">
+			<h1 class="lead">Welcome to the WorldTree Store.</h1>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="col">
+		<div
+			ng-repeat="department in departments | orderBy:sortType:sortReverse | filter:searchTerms">
+			<div class="row m-2">
+				<a class="display-4" href="#">{{department.name}}</a>
+			</div>
+			<div class="row d-flex align-items-center h-100">
+				<div class="col-1">
+					<span class="align-middle" ng-click="department.reduceIndex()"><i
+						class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></span>
+				</div>
+				<div class="col-10">
+					<div class="row">
+						<div class="col-4">
+							<div class="card w-30 m-2"
+								ng-show="department.show[department.index][0]">
+								<div class="card-header">
+									<img ng-click="viewPage(department.items[department.index][0])"
+										ng-src="{{department.items[department.index][0].image}}"
+										width="{{department.items[department.index][0].imageWidth}}"
+										height="{{department.items[department.index][0].imageHeight}}">
+								</div>
+								<h4 class="card-title p-2">{{department.items[department.index][0].name}}</h4>
+								<p class="card-text text-danger p-2">Price:
+									{{department.items[department.index][0].unitPrice | currency}}</p>
+								<div class="card-body p-2">
+									<p class="card-text">{{department.items[department.index][0].description}}</p>
+									<hr>
+									<button class="btn btn-primary"
+										ng-click="viewPage(department.items[department.index][0])">See
+										more</button>
+									<button class="btn btn-info"
+										ng-click="addItemToCart(department.items[department.index][0],1)"
+										ng-disabled="department.items[department.index][0].inCart">
+										<span ng-hide="department.items[department.index][0].inCart"><i
+											class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</span> <span
+											ng-hide="!department.items[department.index][0].inCart"><i
+											class="fa fa-plus" aria-hidden="true"></i>In Cart</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="card w-30 m-2"
+								ng-show="department.show[department.index][1]">
+								<div class="card-header">
+									<img ng-click="viewPage(department.items[department.index][1])"
+										ng-src="{{department.items[department.index][1].image}}"
+										width="{{department.items[department.index][1].imageWidth}}"
+										height="{{department.items[department.index][1].imageHeight}}">
+								</div>
+								<h4 class="card-title p-2">{{department.items[department.index][1].name}}</h4>
+								<p class="card-text text-danger p-2">Price:
+									{{department.items[department.index][1].unitPrice | currency}}</p>
+								<div class="card-body p-2">
+									<p class="card-text">{{department.items[department.index][1].description}}</p>
+									<hr>
+									<button class="btn btn-primary"
+										ng-click="viewPage(department.items[department.index][1])">See
+										more</button>
+									<button class="btn btn-info"
+										ng-click="addItemToCart(department.items[department.index][1],1)"
+										ng-disabled="department.items[department.index][1].inCart">
+										<span ng-hide="department.items[department.index][1].inCart"><i
+											class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</span> <span
+											ng-hide="!department.items[department.index][1].inCart"><i
+											class="fa fa-plus" aria-hidden="true"></i>In Cart</span>
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="card w-30 m-2"
+								ng-show="department.show[department.index][2]">
+								<div class="card-header">
+									<img ng-click="viewPage(department.items[department.index][2])"
+										ng-src="{{department.items[department.index][2].image}}"
+										width="{{department.items[department.index][2].imageWidth}}"
+										height="{{department.items[department.index][2].imageHeight}}">
+								</div>
+								<h4 class="card-title p-2">{{department.items[department.index][2].name}}</h4>
+								<p class="card-text text-danger p-2">Price:
+									{{department.items[department.index][2].unitPrice | currency}}</p>
+								<div class="card-body p-2">
+									<p class="card-text">{{department.items[department.index][2].description}}</p>
+									<hr>
+									<button class="btn btn-primary"
+										ng-click="viewPage(department.items[department.index][2])">See
+										more</button>
+									<button class="btn btn-info"
+										ng-click="addItemToCart(department.items[department.index][2],1)"
+										ng-disabled="department.items[department.index][2].inCart">
+										<span ng-hide="department.items[department.index][2].inCart"><i
+											class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</span> <span
+											ng-hide="!department.items[department.index][2].inCart"><i
+											class="fa fa-plus" aria-hidden="true"></i>In Cart</span>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-1">
+					<span class="align-middle" ng-click="department.increaseIndex()"><i
+						class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></span>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</div>
+</div>
+<!-- <td>{{item.name}}</td>
+		<td>{{item.unitPrice | currency}}</td>
+		<td>{{item.quantity}} in stock</td>
+		<td>{{item.department.name}}</td>
+		<td>{{item.description}}</td>
+		<td><img ng-src="{{item.image}}" width="{{item.imageWidth}}" height="{{item.imageHeight}}"></td>
+		<td><button class="btn" ng-click="viewPage(item)">See more</button></td> -->
